@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Map China</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1ZUX8xlcjoKXAERodurk5_mgvTrCzzhU"></script>
+  <script>
+    function initMap() {
+      var china = {lat: 35.8617, lng: 104.1954};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: china
+      });
+
+      var provinces = {
+        'Beijing': {lat: 39.9042, lng: 116.4074},
+        'Shanghai': {lat: 31.2304, lng: 121.4737},
+        'Guangdong': {lat: 23.3790, lng: 113.7633},
+        // 他の省の座標を追加
+      };
+
+      document.getElementById('provinceSelect').addEventListener('change', function() {
+        var selectedProvince = this.value;
+        if (provinces[selectedProvince]) {
+          map.setCenter(provinces[selectedProvince]);
+          map.setZoom(7);
+        }
+      });
+    }
+  </script>
+</head>
+<body onload="initMap()">
+  <h1>Google Map China</h1>
+  <select id="provinceSelect">
+    <option value="">Select a Province</option>
+    <option value="Beijing">Beijing</option>
+    <option value="Shanghai">Shanghai</option>
+    <option value="Guangdong">Guangdong</option>
+    <!-- 他の省を追加 -->
+  </select>
+  <div id="map" style="height: 500px; width: 100%;"></div>
+</body>
+</html>
